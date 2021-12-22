@@ -14,7 +14,8 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "react",
@@ -32,20 +33,24 @@
         ]
       }
     ],
-    "import/extensions": [
-      "error",
-      "always",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
+    "import/extensions": "off"
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx"
+      ]
+    },
     "import/resolver": {
       "node": {
+        "paths": [
+          ".",
+          "src",
+          "src/routers"
+        ],
         "extensions": [
           ".js",
           ".jsx",
@@ -55,8 +60,40 @@
         "moduleDirectory": [
           "node_modules",
           "src/"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+          "project": "./tsconfig.json"
+        }
+      },
+      "typescript": {
+        "paths": [
+          ".",
+          "src",
+          "src/routers"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ],
+        "moduleDirectory": [
+          "node_modules",
+          "src/"
+        ],
+        "project": [
+          "./tsconfig.json"
         ]
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ]
+    }
+  ]
 }
